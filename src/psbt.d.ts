@@ -118,6 +118,19 @@ export declare class Psbt {
     addUnknownKeyValToInput(inputIndex: number, keyVal: KeyValue): this;
     addUnknownKeyValToOutput(outputIndex: number, keyVal: KeyValue): this;
     clearFinalizedInput(inputIndex: number): this;
+    getHashAndSighashType( 
+        inputs:PsbtInput[],
+        inputIndex:number,
+        pubkey:any,
+        cache:{
+            __NON_WITNESS_UTXO_TX_CACHE: never[];
+            __NON_WITNESS_UTXO_BUF_CACHE: never[];
+            __TX_IN_CACHE: {};
+            __TX: any;
+            __UNSAFE_SIGN_NONSEGWIT: boolean;
+        },
+        sighashTypes:number[],
+      ):this;
 }
 interface PsbtOptsOptional {
     network?: Network;

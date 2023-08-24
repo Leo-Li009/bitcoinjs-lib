@@ -912,6 +912,27 @@ class Psbt {
     this.data.clearFinalizedInput(inputIndex);
     return this;
   }
+  getHashAndSighashType(
+    inputs,
+    inputIndex,
+    pubkey,
+    cache,
+    sighashTypes,
+  ) {
+    const input = (0, utils_1.checkForInput)(inputs, inputIndex);
+    const { hash, sighashType, script } = getHashForSig(
+      inputIndex,
+      input,
+      cache,
+      false,
+      sighashTypes,
+    );
+    checkScriptForPubkey(pubkey, script, 'sign');
+    return {
+      hash,
+      sighashType,
+    };
+  }
 }
 exports.Psbt = Psbt;
 /**
